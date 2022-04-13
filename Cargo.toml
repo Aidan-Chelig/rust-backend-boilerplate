@@ -6,4 +6,16 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rocket = "0.4.10"
+rocket = { version = "0.5.0-rc.1", default-features = false, features = ["json"] }
+rocket_okapi = { version = "0.8.0-alpha-1", features = ["swagger", "rapidoc", "msgpack"] }
+diesel = {version = "1.4.8", features = ["mysql"] }
+diesel_migrations = "1.4.0"
+serde = "1.0"
+
+
+[dependencies.rocket_sync_db_pools]
+version = "0.1.0-rc.1"
+default-features = false
+# Remember to install mysql and its development headers
+# And diesel CLI
+features = ["diesel_mysql_pool"]

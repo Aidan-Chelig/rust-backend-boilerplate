@@ -11,16 +11,18 @@ mkShell {
   name = "rust";
     nativeBuildInputs = [
     pkgconfig
-    clang lld # To use lld linker
   ];
   buildInputs = [
+    libmysqlclient
+diesel-cli
   cargo-make watchexec clippy rustfmt rust-analyzer openssl lld pkgconfig
-  (latest.rustChannels.stable.rust.override {
+  pscale
+  (latest.rustChannels.nightly.rust.override {
     targets = ["wasm32-unknown-unknown" "x86_64-unknown-linux-gnu"];
   })
-  latest.rustChannels.stable.cargo
-  latest.rustChannels.stable.rust-src
-  latest.rustChannels.stable.rustc
+  latest.rustChannels.nightly.cargo
+  latest.rustChannels.nightly.rust-src
+  latest.rustChannels.nightly.rustc
   ];
 
   shellHook = ''
